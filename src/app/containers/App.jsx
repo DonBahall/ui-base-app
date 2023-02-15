@@ -10,12 +10,16 @@ import IntlProvider from 'components/IntlProvider';
 import Header from 'components/Header';
 import PageInitial from 'pageProviders/Initial';
 import PageLogin from 'pageProviders/Login';
+import PageList from 'pageProviders/List.jsx';
+import ChangePage from 'pageProviders/Change'
+
 import * as PAGES from 'constants/pages';
 import {
   fetchUser,
 } from '../actions/user';
 
 const App = () => {
+
   const [state, setState] = useState({
     componentDidMount: false,
   });
@@ -40,6 +44,15 @@ const App = () => {
               </Route>
               <Route path={`/${PAGES.INITIAL}`}>
                 <PageInitial />
+              </Route>
+              <Route exact path={`/${PAGES.LIST}`} >
+                <PageList/>
+              </Route>
+              <Route exact path={`/${PAGES.CHANGE}/:item_id`} >
+                <ChangePage/>
+              </Route>
+              <Route exact path={`/${PAGES.CHANGE}`} >
+                <ChangePage/>
               </Route>
               <Redirect from="*" to={`/${PAGES.INITIAL}`} />
             </Switch>

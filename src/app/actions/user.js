@@ -7,7 +7,7 @@ import {
   getToken,
   setToken,
 } from 'token';
-import config from 'config';
+import config from 'config/configExample';
 
 import {
   ERROR_RECEIVE_USER,

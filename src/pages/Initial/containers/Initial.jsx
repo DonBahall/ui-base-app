@@ -5,6 +5,8 @@ import Link from 'components/Link';
 import Typography from 'components/Typography';
 import useAccessValidate from 'hooks/useAccessValidate';
 
+
+
 const getClasses = makeStyles(() => ({
   container: {
     display: 'flex',
@@ -25,19 +27,11 @@ const Initial = ({
   });
 
   return (
+
     <div className={classes.container}>
-      {canSeeList && availableItems.map((item, index) => (
+      {canSeeList && availableItems.map((item) => (
         <Link
-          href={index % 2 === 0
-            ? `https://www.google.com.ua/search?q=${item}&hl=ru`
-            : undefined}
-          to={index % 2 !== 0
-            ? (location => ({
-              ...location,
-              pathname: `/${item}`,
-              search: `${location.search}&newProp=42`,
-            }))
-            : undefined}
+          href={`http://localhost:3000/list`}
         >
           <Typography>
             {item}

@@ -7,15 +7,15 @@ import Initial from './containers/Initial';
 import reducer from './reducers/reducer';
 
 const rootReducer = combineReducers({
-  reducer,
+    reducer,
 });
 const store = createStore(
-  rootReducer,
-  applyMiddleware(thunkMiddleware),
+    rootReducer,
+    applyMiddleware(thunkMiddleware),
 );
 
 export default withAuthorities(props => (
-  <Provider store={store}>
-    <Initial {...props} />
-  </Provider>
+    <Provider store={store}>
+        <Initial {...props} />
+    </Provider>
 ));
