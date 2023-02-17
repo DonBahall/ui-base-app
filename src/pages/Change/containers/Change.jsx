@@ -1,26 +1,24 @@
 import {Button, TextField} from "@material-ui/core";
 import React, {useRef} from 'react';
 import {useParams} from "react-router-dom";
+import listManager from 'pages/Change/reducer/reducer'
 
 const Change = () => {
 
     const inputRef = useRef(null);
     const inputRef2 = useRef(null);
     const {item_id} = useParams();
-
+    let i;
     if (item_id != null) {
-      let i = getItem()
+       i = getItem();
         console.log(i)
     }
 
+
     async function getItem() {
-        //не понял как правильно разбить json что бы поместить в textField
-        let i;
-         await fetch("http://localhost:8080/change/" + item_id, {
+        return await fetch("http://localhost:8080/change/" + item_id, {
             method: 'GET',
         }).then((response) => response.json())
-            .then((response) => i = JSON.parse(response))
-        return i
     }
 
     function up() {
@@ -33,8 +31,8 @@ const Change = () => {
 
     return (
         <div>
-            <p><TextField inputRef={inputRef} title={"Name"} >Name</TextField></p>
-            <p><TextField inputRef={inputRef2} title={"Price"}>Price</TextField></p>
+            <p><TextField inputRef={inputRef} title={"Name"} value={i.name} >Name</TextField></p>
+            <p><TextField inputRef={inputRef2} title={"Price"} value={i.price}>Price</TextField></p>
             <Button onClick={up}>Сохранить</Button>
             <Button href={"http://localhost:3000/list"}>Отменить</Button>
         </div>
@@ -48,7 +46,9 @@ function save(value, price) {
         body: JSON.stringify(data),
         headers: {'content-type': 'application/json'}
     }).then((result) => result.ok).
-    catch()
+    catch((error) =>{
+        console.log(error)
+    })
 }
 
 function update(value, price, id) {
